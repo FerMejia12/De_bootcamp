@@ -5,14 +5,24 @@
 
 Pre-step
 
-Install `AWS` cli V2 following official instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+0. Install `AWS` cli V2 following official instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+```python
+# If unable to connect to AWS through CLI. You may access AWS website and use AWS CLI online (console.aws.amazon.com)
+aws s3 ls
+
+# to create a bucket
+aws s3api create-bucket --bucket BUCKET_NAME --region us-east-2 --create-bucket-configuration  LocationConstraint=us-east-2
+
+# to upload into a bucket use
+# aws s3 cp origin destination
+aws s3 cp segments.csv s3://BUCKET_NAME
+```
 
 OR
 
 Install Cloud SDK fro `GCP` which contains `gcloud`, `gsutil` and `bq` command-line tools following official instructions [here](https://cloud.google.com/sdk/docs/install)
 
 ### IMPORTANT make sure that the account you are setting up has owner permissions in the project
-
 ---
 
 ## Please notice that you need to replace BUCKET_NAME with an unique name
@@ -67,7 +77,6 @@ In this section you are going to copy a ~20GB
 ```python
 # to copy from a bucket use
 # aws s3  cp origin destination
-aws s3 cp s3://de-bootcamp-2021/all_data.csv s3://BUCKET_NAME
 ```
 
 - For GCP use: </br>
@@ -101,11 +110,10 @@ mydataset
   ```python
     # create a table
     aws redshift-data execute-statement \
-    --database my_database \
+    --database dev \
     --db-user adminuser \
-    --cluster-identifier mycluster \
-    --region us-east-2 \
-    --sql "CREATE TABLE my_table (producto varchar (255),presentacion varchar (255), marca varchar (255), categoria varchar (255), catalogo varchar (255), precio varchar (255),fechaRegistro varchar (255), cadenaComercial varchar (255),giro varchar (255),nombreComercial varchar (255), direccion varchar (255), estado varchar (255), municipio varchar (255), latitud varchar (255), longitud varchar (255));"
+    --cluster-identifier debootcampfmncluster \
+    --sql "CREATE TABLE profeco (producto varchar (255),presentacion varchar (255), marca varchar (255), categoria varchar (255), catalogo varchar (255), precio varchar (255),fechaRegistro varchar (255), cadenaComercial varchar (255),giro varchar (255),nombreComercial varchar (255), direccion varchar (255), estado varchar (255), municipio varchar (255), latitud varchar (255), longitud varchar (255));"
 
     # copy s3 file into my_table
     # please take a moment to review the options that are being passed
@@ -113,7 +121,6 @@ mydataset
         --database my_database \
         --db-user adminuser \
         --cluster-identifier mycluster \
-        --region us-east-2 \
         --sql "COPY my_table FROM 's3://BUCKET_NAME/all_data.csv' CREDENTIALS 'aws_access_key_id=ACCESS_KEY;aws_secret_access_key=SECRET_ACCESS_KEY' DELIMITER ',' IGNOREHEADER 1 MAXERROR as 250 CSV;"
 
         # you can look for errors executing this SQL command on Redshift UI
@@ -147,6 +154,15 @@ bq rm -t mydataset.mytable
 # If data was ingested without errors go to BigQUery UI and play around with SQL queries on your table
 ```
 ---
+
+### Useful commands for redshift
+- aws redshift-data describe-statement --id #
+- aws redshift-data get-statement-result --id#
+
+### Please try to execute the following Querys:
+- Query 1
+- Query 2
+- Query 3
 
 ### Finally clean up
 
