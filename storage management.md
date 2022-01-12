@@ -3,7 +3,7 @@
 
 ---
 
-Pre-step
+### Pre-step
 
 0. Install `AWS` cli V2 following official instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 ```python
@@ -22,14 +22,15 @@ OR
 
 Install Cloud SDK fro `GCP` which contains `gcloud`, `gsutil` and `bq` command-line tools following official instructions [here](https://cloud.google.com/sdk/docs/install)
 
-### IMPORTANT make sure that the account you are setting up has owner permissions in the project
+#### IMPORTANT make sure that the account you are setting up has owner permissions in the project
+### If Unsure how if your account hass admin access, refer to AWS IAM for users and polcies management (https://console.aws.amazon.com/iamv2/home#/home)
 ---
 
-## Please notice that you need to replace BUCKET_NAME with an unique name
+### Please notice that you need to replace BUCKET_NAME with an unique name
 
 <br>
 
-### Upload a file to your bucket (S3/GCS)
+### 1. Upload a file to your bucket (S3/GCS)
 
 1. Download [this](https://drive.google.com/file/d/1tSnINCBDWziorV9PO67M6eYbl7maOlXs/view?usp=sharing) file, which is only ~70MB
 2. Upload it to your bucket
@@ -68,7 +69,7 @@ gsutil cp segments.csv gs://BUCKET_NAME
 ```
 
 ---
-### Copy a file from a bucket to your bucket (S3/GCS)
+### 2.  Copy a file from a bucket to your bucket (S3/GCS)
 
 In this section you are going to copy a ~20GB
 
@@ -77,6 +78,7 @@ In this section you are going to copy a ~20GB
 ```python
 # to copy from a bucket use
 # aws s3  cp origin destination
+aws s3 cp s3://wl-de-training-data/challenge/profeco/all_data.csv s3://BUCKET_NAME
 ```
 
 - For GCP use: </br>
@@ -88,7 +90,7 @@ gsutil cp gs://de-bootcamp-2021/all_data.csv gs://BUCKET_NAME
 ```
 ---
 
-### Prepare your data warehouse for ingestion
+### 3.  Prepare your data warehouse for ingestion
 
 - For AWS create you redshift cluster
 
@@ -104,7 +106,7 @@ bq --location=US mk -d \
 mydataset
 ```
 ---
-### Copy data from a bucket to a data warehouse
+### 4. Copy data from a bucket to a data warehouse
 
 - For AWS:
   ```python
@@ -155,16 +157,16 @@ bq rm -t mydataset.mytable
 ```
 ---
 
-### Useful commands for redshift
+#### Useful commands for redshift
 - aws redshift-data describe-statement --id #
 - aws redshift-data get-statement-result --id#
 
-### Please try to execute the following Querys:
+#### Please try to execute the following Querys:
 - Query 1
 - Query 2
 - Query 3
 
-### Finally clean up
+### 5. Finally clean up
 
 1. Delete files in the buckets
 - For AWS use
