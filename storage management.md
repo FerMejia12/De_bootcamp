@@ -3,9 +3,9 @@
 
 ---
 
-### Pre-step
+### 0. Pre-step
 
-0. Install `AWS` cli V2 following official instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+Install `AWS` cli V2 following official instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 ```python
 # If unable to connect to AWS through CLI. You may access AWS website and use AWS CLI online (console.aws.amazon.com)
 aws s3 ls
@@ -23,12 +23,10 @@ OR
 Install Cloud SDK fro `GCP` which contains `gcloud`, `gsutil` and `bq` command-line tools following official instructions [here](https://cloud.google.com/sdk/docs/install)
 
 #### IMPORTANT make sure that the account you are setting up has owner permissions in the project
-### If Unsure how if your account hass admin access, refer to AWS IAM for users and polcies management (https://console.aws.amazon.com/iamv2/home#/home)
+#### If Unsure how if your account hass admin access, refer to AWS IAM for users and polcies management (https://console.aws.amazon.com/iamv2/home#/home)
 ---
 
-### Please notice that you need to replace BUCKET_NAME with an unique name
-
-<br>
+#### Please notice that you need to replace BUCKET_NAME with an unique name
 
 ### 1. Upload a file to your bucket (S3/GCS)
 
