@@ -26,7 +26,7 @@ Install Cloud SDK fro `GCP` which contains `gcloud`, `gsutil` and `bq` command-l
 #### If Unsure how if your account hass admin access, refer to AWS IAM for users and polcies management (https://console.aws.amazon.com/iamv2/home#/home)
 ---
 
-#### Please notice that you need to replace BUCKET_NAME with an unique name
+#### For the following steps, please notice that you need to replace BUCKET_NAME with an unique name
 
 ### 1. Upload a file to your bucket (S3/GCS)
 
@@ -164,7 +164,7 @@ bq rm -t mydataset.mytable
 - Query 2
 - Query 3
 
-### 5. Finally clean up
+### 5. Clean up
 
 1. Delete files in the buckets
 - For AWS use
@@ -190,7 +190,7 @@ aws s3 rb s3://BUCKET_NAME
 ```python
 gsutil rb gs://BUCKET_NAME
 ```
-3. Delete datawarehouse tables
+3. Delete datawarehouse
  - For AWS use
  ```python
  # on AWS you can directly delete the whole cluster
