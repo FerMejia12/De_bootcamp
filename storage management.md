@@ -164,6 +164,10 @@ bq rm -t mydataset.mytable
 - Query 2
 - Query 3
 
+#### Can you share any fixes to the queries?
+
+---
+
 ### 5. Clean up
 
 1. Delete files in the buckets
