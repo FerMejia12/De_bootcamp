@@ -170,7 +170,7 @@ bq rm -t mydataset.mytable
 - aws redshift-data get-statement-result --id#
 
 #### Please try to execute the following Querys:
-### find the top 3 expensive products by estate
+## find the top 3 expensive products by estate
 ```
 select 
   rank,
@@ -193,7 +193,7 @@ where (rank <= 3)
 order by estado
 ```
 
-### find the top 10 marcas having estado_id = 14 as a input parameter
+## find the top 10 marcas having estado_id = 14 as a input parameter
 ```
 SELECT 
   a.marca, a.estado, sum(1) as available_products
@@ -209,6 +209,16 @@ SELECT
 #### Can you share any improvement updates to the queries?
 
 ---
+
+### General Tips
+
+- Never perform a query without a where clause, its expensive on resources and money
+- Try to avoid select *, select only the fields that are required for the task
+- Use table preview as frecuent as possible instead of performing a query to check data types
+- check table schema from schema tab instead of performing a query (show create table)
+- while querying, try to put partitions first then other fields on where clause
+- try to have at least one partition on where clause, when partitios avaiable
+- if a query is being executed frecuently, try adding them into a view or temp table
 
 ### 5. Clean up
 
