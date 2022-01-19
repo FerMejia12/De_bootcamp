@@ -1,5 +1,15 @@
 # Storage
-## Best Practices
+### Best Practices
+
+## AWS RedShift
+Amazon Redshift uses SQL to analyze structured and semi-structured data across data warehouses, operational databases, and data lakes, using AWS-designed hardware and machine learning to deliver the best price performance at any scale. 
+
+When loading data into AWS Redshift, using COPY command is recommended for large data sets.
+
+The COPY command appends the new input data to any existing rows in the table.
+
+The maximum size of a single input row from any source is 4 MB.
+
 
 ---
 
