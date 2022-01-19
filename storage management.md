@@ -170,11 +170,43 @@ bq rm -t mydataset.mytable
 - aws redshift-data get-statement-result --id#
 
 #### Please try to execute the following Querys:
-- Query 1
-- Query 2
-- Query 3
+### find the top 3 expensive products by estate
+```
+select 
+  rank,
+    estado,
+    marca, 
+    producto, 
+    precio
+from 
+(
+  select distinct
+    RANK() OVER (PARTITION BY estado order by precio desc) as rank,
+    estado,
+    marca, 
+    producto, 
+    precio
+  from `data-castle-bravo.mydataset_jbeas.testtable_partitioned`
+  where estado <> ''
+) as top_marcas
+where (rank <= 3)
+order by estado
+```
 
-#### Can you share any fixes to the queries?
+### find the top 10 marcas having estado_id = 14 as a input parameter
+```
+SELECT 
+  a.marca, a.estado, sum(1) as available_products
+  FROM `data-castle-bravo.mydataset_jbeas.testtable_partitioned` as a
+  inner join `data-castle-bravo.mydataset_jbeas.estados` as b on 
+  a.estado = b.estado
+  where b.estado_id = 14
+  group by a.marca, a.estado 
+  order by available_products desc
+  limit 10;
+```
+
+#### Can you share any improvement updates to the queries?
 
 ---
 
